@@ -68,13 +68,13 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(user);
-		session.save(vehicle);
-		session.save(vehicle2);
+//		session.save(vehicle);
+//		session.save(vehicle2);
 		session.getTransaction().commit();
 		
 		session.close();
 		
-////		user = null;
+//      //user = null;
 //		vehicle = null;
 //		session = sessionFactory.openSession();
 //		vehicle = (Vehicle)session.get(Vehicle.class, 1);

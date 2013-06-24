@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -76,8 +77,11 @@ public class UserDetails {
 //	@OneToMany(mappedBy="user")
 //	Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
-	@ManyToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
+	
+//	@ManyToMany
+//	Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 
 	public Collection<Vehicle> getVehicles() {

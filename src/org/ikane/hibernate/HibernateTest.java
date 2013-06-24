@@ -58,8 +58,8 @@ public class HibernateTest {
 		Vehicle vehicle2 = new Vehicle();
 		vehicle2.setVehicleName("Jeep");
 		
-		vehicle.setUser(user);
-		vehicle2.setUser(user);
+		vehicle.getUsers().add(user);
+		vehicle2.getUsers().add(user);
 		
 		user.getVehicles().add(vehicle);
 		user.getVehicles().add(vehicle2);

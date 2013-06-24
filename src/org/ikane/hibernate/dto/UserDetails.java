@@ -72,12 +72,7 @@ public class UserDetails {
 //	@JoinColumn(name="VEHICLE_ID")
 //	Vehicle vehicle;
 	
-	@OneToMany
-	@JoinTable(
-			name="USER_VEHICLES",
-			joinColumns = @JoinColumn(name="USER_ID"),
-			inverseJoinColumns = @JoinColumn(name="VEHICLE_ID")
-	)
+	@OneToMany(mappedBy="user")
 	Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 	
 

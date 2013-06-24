@@ -19,6 +19,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -65,7 +66,18 @@ public class UserDetails {
 	@CollectionId(columns={@Column(name="BOOK_ID")},generator="hilo-gen",type=@Type(type="long"))
 	Collection<Book> books = new ArrayList<Book>();
 	
+	@OneToOne
+	@JoinColumn(name="VEHICLE_ID")
+	Vehicle vehicle;
 	
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
+
 	public Collection<Book> getBooks() {
 		return books;
 	}

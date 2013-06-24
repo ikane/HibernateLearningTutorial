@@ -55,21 +55,30 @@ public class HibernateTest {
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Car");
 		
-		user.setVehicle(vehicle);
+		Vehicle vehicle2 = new Vehicle();
+		vehicle2.setVehicleName("Jeep");
+		
+		vehicle.setUser(user);
+		vehicle2.setUser(user);
+		
+		user.getVehicles().add(vehicle);
+		user.getVehicles().add(vehicle2);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(user);
 		session.save(vehicle);
+		session.save(vehicle2);
 		session.getTransaction().commit();
 		
 		session.close();
 		
-//		user = null;
+////		user = null;
+//		vehicle = null;
 //		session = sessionFactory.openSession();
-//		user = (UserDetails)session.get(UserDetails.class, 1);
-//		session.close();
-//		System.out.println(user.getAdresses().size());
+//		vehicle = (Vehicle)session.get(Vehicle.class, 1);
+//		//session.close();
+//		System.out.println(vehicle.getUser().getUsername());
 	}
 }

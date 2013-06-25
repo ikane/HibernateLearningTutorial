@@ -10,6 +10,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.ikane.hibernate.dto.Address;
 import org.ikane.hibernate.dto.Book;
+import org.ikane.hibernate.dto.FourWheeler;
+import org.ikane.hibernate.dto.TwoWheeler;
 import org.ikane.hibernate.dto.UserDetails;
 import org.ikane.hibernate.dto.Vehicle;
 
@@ -55,21 +57,30 @@ public class HibernateTest {
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Car");
 		
-		Vehicle vehicle2 = new Vehicle();
-		vehicle2.setVehicleName("Jeep");
+		TwoWheeler twoWheeler = new TwoWheeler();
+		twoWheeler.setVehicleName("Bike");
+		twoWheeler.setSteeringHandle("Bike Steering");
 		
-		vehicle.getUsers().add(user);
-		vehicle2.getUsers().add(user);
+		FourWheeler fourWheeler = new FourWheeler();
+		fourWheeler.setVehicleName("Jeep");
+		fourWheeler.setSteeringWheel("Porshe Steering Wheel");
 		
-		user.getVehicles().add(vehicle);
-		user.getVehicles().add(vehicle2);
+//		Vehicle vehicle2 = new Vehicle();
+//		vehicle2.setVehicleName("Jeep");
+//		
+//		vehicle.getUsers().add(user);
+//		vehicle2.getUsers().add(user);
+//		
+//		user.getVehicles().add(vehicle);
+//		user.getVehicles().add(vehicle2);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(user);
-//		session.save(vehicle);
-//		session.save(vehicle2);
+//		session.save(user);
+		session.save(vehicle);
+		session.save(twoWheeler);
+		session.save(fourWheeler);
 		session.getTransaction().commit();
 		
 		session.close();

@@ -83,13 +83,16 @@ public class HibernateTest {
 //		session.save(vehicle);
 //		session.save(twoWheeler);
 //		session.save(fourWheeler);
-		Query query = session.createQuery("from UserDetails where userId > 5");
+		Query query = session.createQuery("from UserDetails");
+		query.setFirstResult(5);
+		query.setMaxResults(4);
 		List<UserDetails> users = query.list();
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		System.out.println("Size of list users: " + users.size());
+		for(UserDetails u: users)
+			System.out.println(u.getUsername());
 		
 //      //user = null;
 //		vehicle = null;

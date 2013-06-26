@@ -6,10 +6,12 @@ package org.ikane.hibernate;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.ikane.hibernate.dto.Address;
 import org.ikane.hibernate.dto.Book;
 import org.ikane.hibernate.dto.FourWheeler;
@@ -84,14 +86,26 @@ public class HibernateTest {
 //		query.setFirstResult(5);
 //		query.setMaxResults(4);
 //		query.setInteger("toto", 6);
-		Query query = session.getNamedQuery("userByName");
-		query.setString(0, "User 5");
-		List<UserDetails> users = query.list();
+//		Query query = session.getNamedQuery("userByName");
+//		query.setString(0, "User 5");
+//		List<UserDetails> users = query.list();
+		
+		Criteria criteria =session.createCriteria(UserDetails.class);
+		criteria.add(Restrictions.eq("username", "User 5"));
+		
+		List<UserDetails> users = criteria.list();
+		
+		/*
+		for (int i = 0; i < 10; i++) {
+			user = new UserDetails();
+			user.setUsername("User " + i);
+			session.save(user);
+		}
+		*/
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		//System.out.println(user.getUsername());
 		for(UserDetails u: users)
 			System.out.println(u.getUsername());
 		

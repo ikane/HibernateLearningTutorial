@@ -11,6 +11,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.ikane.hibernate.dto.Address;
 import org.ikane.hibernate.dto.Book;
@@ -90,10 +92,19 @@ public class HibernateTest {
 //		query.setString(0, "User 5");
 //		List<UserDetails> users = query.list();
 		
-		Criteria criteria =session.createCriteria(UserDetails.class);
-		criteria.add(Restrictions.eq("username", "User 5"));
+//		Criteria criteria =session.createCriteria(UserDetails.class);
+//		criteria.add(Restrictions.like("username", "%User%"))
+//				.add(Restrictions.between("userId", 5,9));
 		
-		List<UserDetails> users = criteria.list();
+//		user.setUserId(5);
+//		user.setUsername("User 5");
+//		
+//		Example example = Example.create(user).;
+//		criteria.add(example);
+		
+		user = (UserDetails) session.get(UserDetails.class, 1);
+		
+		UserDetails user2 = (UserDetails) session.get(UserDetails.class, 1);
 		
 		/*
 		for (int i = 0; i < 10; i++) {
@@ -106,8 +117,8 @@ public class HibernateTest {
 		session.getTransaction().commit();
 		session.close();
 		
-		for(UserDetails u: users)
-			System.out.println(u.getUsername());
+//		for(UserDetails u: users)
+//			System.out.println(u.getUsername());
 		
 //      //user = null;
 //		vehicle = null;

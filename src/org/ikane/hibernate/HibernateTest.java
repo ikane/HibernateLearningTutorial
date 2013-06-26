@@ -4,7 +4,9 @@
 package org.ikane.hibernate;
 
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -81,14 +83,13 @@ public class HibernateTest {
 //		session.save(vehicle);
 //		session.save(twoWheeler);
 //		session.save(fourWheeler);
-		session.save(user);
-		
-		user.setUsername("usrname updated");
+		Query query = session.createQuery("from UserDetails where userId > 5");
+		List<UserDetails> users = query.list();
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		//System.out.println(user.getUsername());
+		System.out.println("Size of list users: " + users.size());
 		
 //      //user = null;
 //		vehicle = null;

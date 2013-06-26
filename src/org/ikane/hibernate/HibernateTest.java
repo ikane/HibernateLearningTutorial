@@ -80,10 +80,12 @@ public class HibernateTest {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		
-		Query query = session.createQuery("from UserDetails where userId > :toto");
+//		Query query = session.createQuery("from UserDetails where userId > :toto");
 //		query.setFirstResult(5);
 //		query.setMaxResults(4);
-		query.setInteger("toto", 6);
+//		query.setInteger("toto", 6);
+		Query query = session.getNamedQuery("userByName");
+		query.setString(0, "User 5");
 		List<UserDetails> users = query.list();
 		
 		session.getTransaction().commit();

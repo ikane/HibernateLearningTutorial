@@ -35,8 +35,7 @@ public class HibernateTest {
 		
 		//user.setUserId(1);
 		user.setUsername("First user");
-		user.setJoinDate(new Date());
-		user.setDescription("First user descritpion");
+		
 		
 //		Address addr = new Address();
 //		addr.setStreet("Street name");
@@ -104,8 +103,6 @@ public class HibernateTest {
 		
 		user = (UserDetails) session.get(UserDetails.class, 1);
 		
-		UserDetails user2 = (UserDetails) session.get(UserDetails.class, 1);
-		
 		/*
 		for (int i = 0; i < 10; i++) {
 			user = new UserDetails();
@@ -116,6 +113,14 @@ public class HibernateTest {
 		
 		session.getTransaction().commit();
 		session.close();
+		
+		Session session2 = sessionFactory.openSession();
+		session2.beginTransaction();
+		
+		UserDetails user2 = (UserDetails) session2.get(UserDetails.class, 1);
+		
+		session2.getTransaction().commit();
+		session2.close();
 		
 //		for(UserDetails u: users)
 //			System.out.println(u.getUsername());

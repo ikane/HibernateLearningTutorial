@@ -101,7 +101,9 @@ public class HibernateTest {
 //		Example example = Example.create(user).;
 //		criteria.add(example);
 		
-		user = (UserDetails) session.get(UserDetails.class, 1);
+		Query query = session.createQuery("from UserDetails where userId=1");
+		query.setCacheable(true);
+		List<UserDetails> users = query.list();
 		
 		/*
 		for (int i = 0; i < 10; i++) {
@@ -117,19 +119,11 @@ public class HibernateTest {
 		Session session2 = sessionFactory.openSession();
 		session2.beginTransaction();
 		
-		UserDetails user2 = (UserDetails) session2.get(UserDetails.class, 1);
+		Query query2 = session2.createQuery("from UserDetails where userId=1");
+		query2.setCacheable(true);
+		List<UserDetails> users2 = query2.list();
 		
 		session2.getTransaction().commit();
 		session2.close();
-		
-//		for(UserDetails u: users)
-//			System.out.println(u.getUsername());
-		
-//      //user = null;
-//		vehicle = null;
-//		session = sessionFactory.openSession();
-//		vehicle = (Vehicle)session.get(Vehicle.class, 1);
-//		//session.close();
-//		System.out.println(vehicle.getUser().getUsername());
 	}
 }
